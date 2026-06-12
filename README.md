@@ -64,6 +64,17 @@ python3 bot.py
 
 When your Discord bot sends a HIGH signal to GPIO 17, it outputs 3.3V, pushing current through the LED and resistor to Ground, illuminating the "bulb."
 
+## Troubleshooting
+
+### Error: "can not open gpiochip" or "unable to open /dev/gpiomem"
+This is a permissions error. By default, your Linux user might not have permission to control the physical hardware pins. 
+
+To fix this, add your user to the `gpio` group:
+```bash
+sudo usermod -aG gpio $USER
+```
+**Important:** You must log out and log back in (or simply `sudo reboot`) for the group changes to take effect. If you still have issues after rebooting, you can run the bot as root using `sudo` as a last resort: `sudo env "PATH=$PATH" python3 bot.py`.
+
 ## Reference
 
 ![Raspberry Pi 4 GPIO Diagram](images/GPIO-diagram-Raspberry-Pi-4.png)
