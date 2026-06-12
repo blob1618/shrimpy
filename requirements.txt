@@ -1,3 +1,4 @@
 discord.py
 gpiozero
 python-dotenv
+rpi-lgpio
