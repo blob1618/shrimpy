@@ -10,7 +10,7 @@ import time
 # Use OutputDevice for relays instead of LED to handle active_high/active_low logic properly.
 # Many 5V relays for Arduino/Raspberry Pi trigger on LOW signals. 
 # If your relay turns ON when the Pi boots, change `active_high=True` to `active_high=False`.
-RELAY_PIN = 17 
+RELAY_PIN = 21 
 relay = OutputDevice(RELAY_PIN, active_high=True, initial_value=False)
 
 class LightControlView(View):
@@ -24,8 +24,12 @@ class LightControlView(View):
     async def toggle_button(self, interaction: discord.Interaction, button: Button):
         current_time = time.time()
         
+        user = interaction.user.name
+        print(f"[{time.strftime('%X')}] Button clicked by {user}!")
+        
         # Debounce / Cooldown check
         if current_time - self.last_toggled < self.cooldown:
+            print(f"[{time.strftime('%X')}] Action blocked: Cooldown active.")
             await interaction.response.send_message("Please wait a moment before toggling again to protect the relay.", ephemeral=True)
             return
             
@@ -37,6 +41,8 @@ class LightControlView(View):
         # Determine the new state for the UI
         is_on = relay.is_active
         state_text = "ON" if is_on else "OFF"
+        
+        print(f"[{time.strftime('%X')}] Relay physical state changed to: {state_text}")
         
         # Update button color based on state (Green for ON, Gray for OFF)
         button.style = discord.ButtonStyle.success if is_on else discord.ButtonStyle.secondary

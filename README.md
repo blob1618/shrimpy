@@ -54,15 +54,15 @@ python3 bot.py
 
 **Required Components:** Raspberry Pi, Breadboard, 1x LED, 1x Resistor (220Ω to 330Ω), and 2x Female-to-Male jumper wires.
 
-**Establish Ground:** Connect a jumper wire from a physical Ground pin on the Raspberry Pi (e.g., Pin 6) to the negative rail (the blue line) on the breadboard.
+**Establish Ground:** Connect a jumper wire from a physical Ground pin on the Raspberry Pi (e.g., Pin 39, which is the 2nd to last pin on the inside row) to the negative rail (the blue line) on the breadboard.
 
 **Place the LED:** Insert the LED into the middle of the breadboard. Note that the LED has polarity: the longer leg is the anode (positive) and the shorter leg is the cathode (negative).
 
 **Connect the Resistor:** Place the resistor so it bridges the row containing the LED's short leg (cathode) and the negative rail. Resistors do not have polarity; orientation does not matter.
 
-**Connect the Data Pin:** Connect a jumper wire from a GPIO pin on the Pi (e.g., GPIO 17, which is physical Pin 11) to the row containing the LED's long leg (anode).
+**Connect the Data Pin:** Connect a jumper wire from a GPIO pin on the Pi (e.g., GPIO 21, which is physical Pin 40, the very last pin on the outside row) to the row containing the LED's long leg (anode).
 
-When your Discord bot sends a HIGH signal to GPIO 17, it outputs 3.3V, pushing current through the LED and resistor to Ground, illuminating the "bulb."
+When your Discord bot sends a HIGH signal to GPIO 21, it outputs 3.3V, pushing current through the LED and resistor to Ground, illuminating the "bulb."
 
 ## Troubleshooting
 
